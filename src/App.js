@@ -8,9 +8,11 @@ import TopBar from "./components/TopBar";
 import UserDetail from "./components/UserDetail";
 import UserList from "./components/UserList";
 import UserPhotos from "./components/UserPhotos";
+import { CurrentViewProvider } from './contexts/CurrentViewContext';
 
 const App = (props) => {
   return (
+    <CurrentViewProvider>
       <Router>
         <div>
           <Grid container spacing={2}>
@@ -27,12 +29,12 @@ const App = (props) => {
               <Paper className="main-grid-item">
                 <Routes>
                   <Route
-                      path="/users/:userId"
-                      element = {<UserDetail />}
+                    path="/users/:userId"
+                    element={<UserDetail />}
                   />
                   <Route
-                      path="/photos/:userId"
-                      element = {<UserPhotos />}
+                    path="/photos/:userId"
+                    element={<UserPhotos />}
                   />
                   <Route path="/users" element={<UserList />} />
                 </Routes>
@@ -41,6 +43,7 @@ const App = (props) => {
           </Grid>
         </div>
       </Router>
+    </CurrentViewProvider>
   );
 }
 

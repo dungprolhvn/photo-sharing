@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import { ImageList, ImageListItem, Typography } from "@mui/material";
 
@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import models from "../../modelData/models.js";
 
 import Photo from "./Photo.jsx";
+import { CurrentViewContext } from "../../contexts/CurrentViewContext.js";
 
 /**
  * Define UserPhotos, a React component of Project 4.
@@ -15,7 +16,16 @@ import Photo from "./Photo.jsx";
 function UserPhotos() {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
+  const { setCurrentView } = useContext(CurrentViewContext);
+
+  const user = useParams();
+  const userId = user.userId;
+  const userDetail = models.userModel(userId);
+  const allPhotos = models.photoOfUserModel(userId);
+
   useEffect(() => {
+    // change TopBar to display view name
+    setCurrentView(`Photos of  ${userDetail.first_name} ${userDetail.last_name}`)
     // function definition
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
@@ -31,9 +41,6 @@ function UserPhotos() {
 
   }, []);
 
-  const user = useParams();
-  const userId = user.userId;
-  const allPhotos = models.photoOfUserModel(userId);
   return (
     <>
       <ImageList cols={3} gap={8}>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Card, CardContent, Typography, Divider } from "@mui/material";
 
 import "./styles.css";
@@ -17,7 +18,6 @@ const Photo = ({ photoData }) => {
             {/* Photo Section */}
             <img
                 src={`/images/${photoData.file_name}`}
-                alt="A photo"
                 style={{ width: "100%", objectFit: "cover" }}
             />
 
@@ -30,9 +30,11 @@ const Photo = ({ photoData }) => {
                 <div style={{ maxHeight: "300px", overflow: "auto" }}>
                     {comments.map((comment) => (
                         <div key={comment._id} style={{ marginBottom: "10px" }}>
-                            <Typography variant="body1" style={{ fontWeight: "bold" }}>
-                                {comment.user.first_name} {comment.user.last_name}
-                            </Typography>
+                            <Link to={`/users/${comment.user._id}`}>
+                                <Typography variant="body1" style={{ fontWeight: "bold" }}>
+                                    {comment.user.first_name} {comment.user.last_name}
+                                </Typography>
+                            </Link>
                             <Typography variant="body2" color="textSecondary">
                                 {comment.date_time}
                             </Typography>
