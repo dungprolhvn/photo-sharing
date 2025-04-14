@@ -8,3 +8,13 @@
     z-index: 1000;
     overflow: auto;
 }
+
+.photo-div > .closeButton {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    font-size: large;
+    color: white;
+    background-color: transparent;
+    border-color: transparent;
+}

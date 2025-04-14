@@ -52,9 +52,13 @@ function UserPhotos() {
       </ImageList>
       {selectedPhoto && (
         <div class="photo-div">
+          <button className="closeButton" onClick={() => setSelectedPhoto(null)}>
+            &#x2715;
+          </button>
           <Photo
             photoData={selectedPhoto}
           />
+          
         </div>)}
     </>
   );
