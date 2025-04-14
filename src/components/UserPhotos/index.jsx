@@ -52,7 +52,7 @@ function UserPhotos() {
       </ImageList>
       {selectedPhoto && (
         <div class="photo-div">
-          <button className="closeButton" onClick={() => setSelectedPhoto(null)}>
+          <button className="closeButton" type="button" aria-label="Close photo viewer" onClick={() => setSelectedPhoto(null)}>
             &#x2715;
           </button>
           <Photo
